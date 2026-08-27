@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# Environment variables
+.env
+.env.*
+
+# Static & Media
+/static/
+/media/
+
+# IDEs
+.vscode/
+.idea/
+
+# PyCharm
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Migrations
+# Do NOT ignore migrations in a professional Django project
+# migrations/
+
+# Secrets
+*.pem
+*.key
+
+# Temporary files
+*.tmp
+*.temp
