@@ -4,14 +4,14 @@ from .models import User
 
 class IsAdmin(BasePermission):
     def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == "ADMIN"
+        return request.user.is_authenticated and request.user.role == User.Role.ADMIN
 
 
 class IsCandidate(BasePermission):
     def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == "CANDIDATE"
+        return request.user.is_authenticated and request.user.role == User.Role.CANDIDATE
 
 class IsEmployer(BasePermission):
     def has_permission(self, request, view):
-        return request.user.is_authenticated and request.user.role == "EMPLOYER"
+        return request.user.is_authenticated and request.user.role == User.Role.EMPLOYER
 
