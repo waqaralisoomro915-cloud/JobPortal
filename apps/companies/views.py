@@ -1,11 +1,14 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
-
+from .permissions import (IsOwner,IsRecruiter,IsHR,IsHrOrRecruiterOrOwner)
+from ..accounts.models import User
 from .models import Company, CompanyEmployee
 from .serializers import (
     CompanySerializer,
     CompanyEmployeeSerializer
 )
+
+
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
@@ -15,7 +18,7 @@ class CompanyViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
 
-        if user.role == "Admin":
+        if user.role == User.Role.ADMIN:
             return Company.objects.all()
 
         return Company.objects.filter(
@@ -36,12 +39,24 @@ class CompanyEmployeeViewSet(viewsets.ModelViewSet):
     serializer_class = CompanyEmployeeSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        user = self.request.user
+    def get_permissions(self):
 
-        if user.role == "Admin":
-            return CompanyEmployee.objects.all()
+        if self.action in ["list", "retrieve"]:
+            permission_classes = [IsHrOrRecruiterOrOwner]
 
-        return CompanyEmployee.objects.filter(
-            user=user
-        )
+        elif self.action in [
+            "create",
+            "update",
+            "partial_update",
+            "destroy"
+        ]:
+            permission_classes = [IsOwner]
+
+        else:
+            permission_classes = [IsAuthenticated]
+
+        return [permission() for permission in permission_classes]
+
+
+
+
