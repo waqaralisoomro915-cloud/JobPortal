@@ -1,5 +1,6 @@
+from rest_framework.routers import DefaultRouter
 from . import views
-from django.urls import path
-urlpatterns = [
-    path('jobs/',views.jobs,name='jobs'),
-]
+
+router = DefaultRouter()
+router.register('jobs', views.JobViewSet,basename='jobs')
+urlpatterns = router.urls

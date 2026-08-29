@@ -37,12 +37,12 @@ class CompanyViewSet(viewsets.ModelViewSet):
 
 class CompanyEmployeeViewSet(viewsets.ModelViewSet):
     serializer_class = CompanyEmployeeSerializer
-    permission_classes = [IsAuthenticated]
+
 
     def get_permissions(self):
 
         if self.action in ["list", "retrieve"]:
-            permission_classes = [IsHrOrRecruiterOrOwner]
+            permission_classes = [IsAuthenticated,IsHrOrRecruiterOrOwner]
 
         elif self.action in [
             "create",
@@ -50,7 +50,7 @@ class CompanyEmployeeViewSet(viewsets.ModelViewSet):
             "partial_update",
             "destroy"
         ]:
-            permission_classes = [IsOwner]
+            permission_classes = [IsAuthenticated,IsOwner]
 
         else:
             permission_classes = [IsAuthenticated]
