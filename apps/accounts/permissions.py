@@ -15,3 +15,8 @@ class IsEmployer(BasePermission):
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.role == User.Role.EMPLOYER
 
+class IsEmployerAdminCandidate(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.role == User.Role.EMPLOYER
+
+
