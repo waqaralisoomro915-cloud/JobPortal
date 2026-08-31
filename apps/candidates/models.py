@@ -1,7 +1,9 @@
 from django.db import models
 from ..accounts.models import User
+# from ..skills.models import Skill
 class Candidate(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='candidate')
+    # skills = models.ManyToManyField(Skill,related_name='candidates')
     headline = models.CharField(max_length=200,blank=True)
     bio = models.TextField(blank=True)
     phone = models.CharField(max_length=20,blank=True)

@@ -1,7 +1,10 @@
 from django.db import models
 from ..companies.models import Company
+# from ..skills.models import Skill
 class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE,related_name='jobs')
+    # skill = models.ManyToManyField(Skill,related_name='jobs')
+
     class WorkMode(models.TextChoices):
         REMOTE = "REMOTE", "Remote"
         HYBRID = "HYBRID", "Hybrid"
