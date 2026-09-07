@@ -26,6 +26,5 @@ urlpatterns = [
     path('',include('apps.interviews.urls')),
     path('',include('apps.skills.urls')),
     path('',include('apps.jobs.urls')),
-    path('',include('apps.common.urls')),
     path('',include('apps.notifications.urls')),
 ]

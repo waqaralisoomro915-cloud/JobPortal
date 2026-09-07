@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.applications',
     'apps.candidates',
-    'apps.common',
     'apps.companies',
     'apps.jobs',
     'apps.notifications',
