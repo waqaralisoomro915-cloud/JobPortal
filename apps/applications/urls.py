@@ -1,5 +1,7 @@
+from multiprocessing.resource_tracker import register
+
 from . import views
-from django.urls import path
-urlpatterns = [
-    path('applications/',views.applications,name='applications'),
-]
+from rest_framework.routers import DefaultRouter
+router = DefaultRouter()
+router.register('applications', views.ApplicationViewSet,basename='applications')
+urlpatterns = router.urls
