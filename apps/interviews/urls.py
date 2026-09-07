@@ -1,5 +1,5 @@
 from . import views
-from django.urls import path
-urlpatterns = [
-    path('interviews/',views.interviews,name='interviews'),
-]
+from rest_framework.routers import DefaultRouter
+router = DefaultRouter()
+router.register('interviews',views.InterviewViewSet,basename='interviews')
+urlpatterns = router.urls
